@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💘</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff5f9e, #ffc371);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .card {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  h1 {
+    color: #ff2e63;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .buttons {
+    margin-top: 25px;
+    position: relative;
+    height: 150px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+  #yes {
+    background: #ff2e63;
+    color: white;
+  }
+
+  #no {
+    background: #ccc;
+    color: #333;
+    position: absolute;
+  }
+
+  .hearts {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall 4s linear infinite;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💘 Taufique, will you be my Valentine? 💘</h1>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 🙃</button>
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+
+  function moveNoButton() {
+    const x = Math.random() * 60 + 10;
+    const y = Math.random() * 60 + 10;
+    noBtn.style.left = x + "%";
+    noBtn.style.top = y + "%";
+  }
+
+  noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("mouseover", moveNoButton);
+
+  yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+      <div style="text-align:center;">
+        <h1 style="color:white;font-size:32px;">💖 YAYYY! 💖</h1>
+        <p style="color:white;font-size:20px;">You are officially my Valentine 😌</p>
+      </div>
+    `;
+  });
+
+  // Falling hearts
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "hearts";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }, 300);
+</script>
+
+</body>
+</html>
